@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Adam Brewer Memorial Displayy</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    </head>
+    <body>
+        <h1>Adam Brewer Memorial Display</h1>
+        <div class="top-level-div">
+            <div class="left-column">
+                <form class="data-form" method="post">
+                    <label for="text-input">Display Text:</label><br>
+                    <input type="text" value="{{text_input}}" class="text-input" name="text-input"><br>
+                    <label for="mode-input">Display Mode:</label><br>
+
+                    <select name="mode-input" id="mode-input">
+                        {% for item in mode_dict %}
+                            {% if item == "automode" and mode_input is not defined or item == mode_input %}
+                                <option value="{{item}}" selected>{{item}}</option>
+                         
+                            {% else %}
+                                <option value="{{item}}">{{item}}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select><br>
+
+                    <label for="color-input">Display Color:</label><br>
+                    <select name="color-input" id="color-input">
+                        {% for item in color_dict %}
+                            {% if item == "autocolor"%}
+                                <option value="{{item}}" selected>{{item}}</option>
+                            {% else %}
+                                <option value="{{item}}">{{item}}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select><br>
+                    
+                    <label for="pos-input">Display Position:</label><br>
+                    <select name="pos-input" id="pos-input">
+                        {% for item in position_dict %}
+                            {% if item == "fill"%}
+                                <option value="{{item}}" selected>{{item}}</option>
+                            {% else %}
+                                <option value="{{item}}">{{item}}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select><br>
+
+                    <input type="submit" class="submission-button" value="Add Animation" name="Add Animation">
+                </form>
+            </div>
+        </div>
+        
+    </body>    
+</html>

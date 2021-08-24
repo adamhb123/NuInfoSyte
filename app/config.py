@@ -1,0 +1,2 @@
+DISABLE_WEBSITE = True
+DISABLE_API = False
