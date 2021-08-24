@@ -1,0 +1,3 @@
+[submodule "NuInfoSys"]
+	path = NuInfoSys
+	url = git@github.com:adamhb123/NuInfoSys.git
