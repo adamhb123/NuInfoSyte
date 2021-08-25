@@ -2,7 +2,7 @@
 Handles web/api - betabrite interoperations
 """
 
-import betabrite
+from NuInfoSys import betabrite
 
 ANIMATIONS = []
 
