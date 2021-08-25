@@ -43,7 +43,7 @@ def based_mode():
     add_animation("", "drinkdrive", "", "")
     add_animation("@channel in #general", "sparkle", "amber", None)
     add_animation("", "nosmoking", "", "")
-    add_animation("message user:brewer for a packet signature", "cherrybomb", "rainbow2", None)
+    add_animation("message brewer for a packet signature", "cherrybomb", "rainbow2", None)
     send_animations()
 
 if __name__ == "__main__":
