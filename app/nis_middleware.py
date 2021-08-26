@@ -1,18 +1,19 @@
-"""Betabrite Middleware
-Handles web/api - betabrite interoperations
+"""
+NuInfoSys Middleware
+Handles NuInfoSyte's web/api - NuInfoSys inter-operations
 """
 
 from typing import List
-from NuInfoSys import betabrite
+from NuInfoSys import betabrite  # type: ignore
 
 ANIMATIONS = []
 
 
-def add_animation(text: str = None, mode: str = None, color: str = None, position: str = None):
+def add_animation(text: str = None, mode: str = None, color: str = None, position: str = None) -> None:
     ANIMATIONS.append(betabrite.Animation(text, mode, color, position))
 
 
-def send_animations():
+def send_animations() -> None:
     betabrite.send_animations(ANIMATIONS)
 
 
@@ -48,7 +49,6 @@ def snowflake_mode() -> None:
 
 
 def based_mode() -> None:
-    add_animation('Watch yourself, you might just be the next to get ROFLcoptered', "cmprsrot", "rainbow2", None)
     add_animation("", "drinkdrive", "", "")
     add_animation("@channel in #general", "sparkle", "amber", None)
     add_animation("", "nosmoking", "", "")

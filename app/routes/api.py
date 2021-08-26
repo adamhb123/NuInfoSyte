@@ -1,15 +1,16 @@
-"""API Routes
+"""
+API Routes
 All API-related routes are defined here.
 """
 from flask import render_template, request, jsonify
-import config
 from __main__ import app
 
 # All input data is received as a query string
-if not config.DISABLE_API:
+if not app.config['DISABLE_API']:
     @app.route("/send-animation", methods=["POST"])
     def send_animation():
-        """[API Method]
+        """
+        [API Endpoint]
         POST endpoint for handling singular animation requests
         """
         text = request.args.get("text")
@@ -27,3 +28,13 @@ if not config.DISABLE_API:
         }
         return jsonify(response)
 
+
+    @app.route("/api", methods=["GET"])
+    def api_index() -> str:
+        """
+        [API Index]
+        Serves the api page
+        :return: rendered api page
+        """
+
+        return render_template('api')
