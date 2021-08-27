@@ -7,7 +7,7 @@ import nis_middleware
 
 app = Flask(__name__, instance_relative_config=True)
 app.config.from_object("config")
-from routes import web, api, errors
+from routes import index, api, error
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)

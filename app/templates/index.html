@@ -1,57 +1,54 @@
 <!DOCTYPE HTML>
 <html>
     <head>
+        <meta charset="UTF-8">
         <title>NuInfoSys</title>
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+        {% include 'includes/global-header.html' %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/templates/index.css') }}">
+
     </head>
     <body>
         <h1>Adam Brewer Memorial Display</h1>
-        <!-- Old code, we'll have to revamp it to deal with animation lists.
-        Useful to keep for now for memory's sake
-        <div class="top-level-div">
-            <div class="left-column">
-                <form class="data-form" method="post">
-                    <label for="text-input">Display Text:</label><br>
-                    <input type="text" value="{{text_input}}" class="text-input" name="text-input"><br>
-                    <label for="mode-input">Display Mode:</label><br>
+        <!-- For now the site will be 100% functionality, 0% style -->
+        <form class="data-form" method="post">
+            <label for="text-input">Display Text:</label><br>
+            <input type="text" value="{{text_input}}" id="text-input" name="text-input"><br>
+            <label for="mode-input">Display Mode:</label><br>
 
-                    <select name="mode-input" id="mode-input">
-                        {% for item in mode_dict %}
-                            {% if item == "automode" and mode_input is not defined or item == mode_input %}
-                                <option value="{{item}}" selected>{{item}}</option>
-                         
-                            {% else %}
-                                <option value="{{item}}">{{item}}</option>
-                            {% endif %}
-                        {% endfor %}
-                    </select><br>
+            <select name="mode-input" id="mode-input">
+                {% for item in mode_dict %}
+                {% if item == "automode" and mode_input is not defined or item == mode_input %}
+                <option value="{{item}}" selected>{{item}}</option>
 
-                    <label for="color-input">Display Color:</label><br>
-                    <select name="color-input" id="color-input">
-                        {% for item in color_dict %}
-                            {% if item == "autocolor"%}
-                                <option value="{{item}}" selected>{{item}}</option>
-                            {% else %}
-                                <option value="{{item}}">{{item}}</option>
-                            {% endif %}
-                        {% endfor %}
-                    </select><br>
-                    
-                    <label for="pos-input">Display Position:</label><br>
-                    <select name="pos-input" id="pos-input">
-                        {% for item in position_dict %}
-                            {% if item == "fill"%}
-                                <option value="{{item}}" selected>{{item}}</option>
-                            {% else %}
-                                <option value="{{item}}">{{item}}</option>
-                            {% endif %}
-                        {% endfor %}
-                    </select><br>
+                {% else %}
+                <option value="{{item}}">{{item}}</option>
+                {% endif %}
+                {% endfor %}
+            </select><br>
 
-                    <input type="submit" class="submission-button" value="Add Animation" name="Add Animation">
-                </form>
-            </div>
-        </div>-->
-        
-    </body>    
+            <label for="color-input">Display Color:</label><br>
+            <select name="color-input" id="color-input">
+                {% for item in color_dict %}
+                {% if item == "autocolor"%}
+                <option value="{{item}}" selected>{{item}}</option>
+                {% else %}
+                <option value="{{item}}">{{item}}</option>
+                {% endif %}
+                {% endfor %}
+            </select><br>
+
+            <label for="pos-input">Display Position:</label><br>
+            <select name="pos-input" id="pos-input">
+                {% for item in position_dict %}
+                {% if item == "fill"%}
+                <option value="{{item}}" selected>{{item}}</option>
+                {% else %}
+                <option value="{{item}}">{{item}}</option>
+                {% endif %}
+                {% endfor %}
+            </select><br>
+
+            <input type="submit" class="submission-button" value="Add Animation" name="Add Animation">
+        </form>
+    </body>
 </html>

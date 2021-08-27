@@ -1,10 +1,9 @@
-from flask import render_template, request, jsonify
+from flask import render_template, request
 from __main__ import app
 from __main__ import nis_middleware
 
-# ENTIRE SITE NEEDS TO BE REWRITTEN TO HANDLE LISTS OF
-# ANIMATIONS
-if not app.config['DISABLE_WEBSITE']:
+
+def setup_web_routes():
     @app.route("/", methods=['GET', 'POST'])
     def index():
         # Serve index
@@ -22,7 +21,6 @@ if not app.config['DISABLE_WEBSITE']:
             color = request.form.get("color-input")
             position = request.form.get("pos-input")
             nis_middleware.add_animation(text, mode, color, position)
-            nis_middleware.send_animations()
             return render_template(
                 'index.html',
                 text_input=text,
@@ -33,3 +31,7 @@ if not app.config['DISABLE_WEBSITE']:
                 color_dict=nis_middleware.get_colors(),
                 position_dict=nis_middleware.get_positions()
             )
+
+
+if not app.config['DISABLE_WEBSITE']:
+    setup_web_routes()

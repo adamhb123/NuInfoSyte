@@ -1,10 +1,20 @@
 <!DOCTYPE HTML>
 <html>
     <head>
+        <meta charset="UTF-8">
         <title>NuInfoSys</title>
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+        {% include 'includes/global-header.html' %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/templates/api.css') }}">
     </head>
     <body>
         <h1>API Documentation</h1>
+        <ul>
+            <li>
+                send-animation-single
+            </li>
+            <li>
+                send-animation-multi
+            </li>
+        </ul>
     </body>
 </html>
