@@ -1,6 +1,5 @@
 from flask import render_template, request
-from __main__ import app
-from __main__ import nis_middleware
+from NuInfoSyte import app, nis_middleware
 
 
 def setup_web_routes():

@@ -14,7 +14,7 @@ from typing import Any, List
 
 from flask import render_template, request, jsonify, Response
 
-from __main__ import app
+from NuInfoSyte import app
 
 
 def _safe_get(dictionary: dict, key: Any) -> Any: return dictionary[key] if key in dictionary else None

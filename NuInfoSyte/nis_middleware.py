@@ -4,7 +4,7 @@ Handles NuInfoSyte's web/api - NuInfoSys inter-operations
 """
 
 from typing import List
-from NuInfoSys import betabrite  # type: ignore
+from NuInfoSyte.NuInfoSys import betabrite  # type: ignore
 
 ANIMATIONS = []
 

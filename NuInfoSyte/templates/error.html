@@ -8,8 +8,8 @@
     </head>
     <body>
         <h1>Error!</h1>
-        <h2>Code {{ error_code }}</h2>
-        <h3>{{ custom_response_string }}</h3>
+        <h2>Code: {{ error_code }}</h2>
+        <h3>Custom response: {{ unique_response_string }}</h3>
         <p>Error Description: {{ error_description }}</p>
         {% if countdown_duration is defined %}
         <h3>Redirecting in <span id="countdown-integer">{{ countdown_duration }}</span>...</h3>
