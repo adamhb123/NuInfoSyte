@@ -15,17 +15,12 @@ def setup_web_routes():
         # Handle form submission
         elif request.method == "POST":
             print(request.form)
-            text = request.form.get("text-input")
-            mode = request.form.get("mode-input")
-            color = request.form.get("color-input")
-            position = request.form.get("pos-input")
-            nis_middleware.add_animation(text, mode, color, position)
+            animations = request.form.get("animation-list")
+            for animation in animations:
+                nis_middleware.add_animation(animation.text, animation.mode, animation.color, animation.position)
+
             return render_template(
                 'index.html',
-                text_input=text,
-                mode_input=mode,
-                color_input=color,
-                position_input=position,
                 mode_dict=nis_middleware.get_modes(),
                 color_dict=nis_middleware.get_colors(),
                 position_dict=nis_middleware.get_positions()

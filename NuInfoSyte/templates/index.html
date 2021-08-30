@@ -8,13 +8,14 @@
 
     </head>
     <body>
-        <h1>Adam Brewer Memorial Display</h1>
+        <h1>NuInfoSys</h1>
+        <script src="{{ url_for('static', filename='js/templates/index.js') }}"></script>
         <!-- For now the site will be 100% functionality, 0% style -->
         <form class="data-form" method="post">
             <label for="text-input">Display Text:</label><br>
-            <input type="text" value="{{text_input}}" id="text-input" name="text-input"><br>
-            <label for="mode-input">Display Mode:</label><br>
+            <input type="text" id="text-input" name="text-input"><br>
 
+            <label for="mode-input">Display Mode:</label><br>
             <select name="mode-input" id="mode-input">
                 {% for item in mode_dict %}
                 {% if item == "automode" and mode_input is not defined or item == mode_input %}
@@ -47,8 +48,8 @@
                 {% endif %}
                 {% endfor %}
             </select><br>
-
-            <input type="submit" class="submission-button" value="Add Animation" name="Add Animation">
+            <button type="button" onclick="addAnimation">Add Animation</button>
+            <input type="submit" class="submission-button" value="Submit Animations" name="Submit Animations">
         </form>
     </body>
 </html>
