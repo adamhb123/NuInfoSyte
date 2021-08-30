@@ -4,3 +4,6 @@
 [submodule "app/NuInfoSys"]
 	path = app/NuInfoSys
 	url = git@github.com:adamhb123/NuInfoSys.git
+[submodule "NuInfoSyte/NuInfoSys"]
+	path = NuInfoSyte/NuInfoSys
+	url = git@github.com:adamhb123/NuInfoSys

@@ -16,8 +16,9 @@ def setup_web_routes():
         elif request.method == "POST":
             print(request.form)
             animations = request.form.get("animation-list")
-            for animation in animations:
-                nis_middleware.add_animation(animation.text, animation.mode, animation.color, animation.position)
+            if not app.config["DISABLE_BETABRITE_TRANSMISSION"]:
+                for animation in animations:
+                    nis_middleware.add_animation(animation.text, animation.mode, animation.color, animation.position)
 
             return render_template(
                 'index.html',

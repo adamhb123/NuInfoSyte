@@ -11,12 +11,14 @@
         <h1>NuInfoSys</h1>
         <script src="{{ url_for('static', filename='js/templates/index.js') }}"></script>
         <!-- For now the site will be 100% functionality, 0% style -->
+        <!-- Animation Input Form -->
         <form class="data-form" method="post">
             <label for="text-input">Display Text:</label><br>
             <input type="text" id="text-input" name="text-input"><br>
 
             <label for="mode-input">Display Mode:</label><br>
             <select name="mode-input" id="mode-input">
+                <option value="None">None</option>
                 {% for item in mode_dict %}
                 {% if item == "automode" and mode_input is not defined or item == mode_input %}
                 <option value="{{item}}" selected>{{item}}</option>
@@ -29,6 +31,7 @@
 
             <label for="color-input">Display Color:</label><br>
             <select name="color-input" id="color-input">
+                <option value="None">None</option>
                 {% for item in color_dict %}
                 {% if item == "autocolor"%}
                 <option value="{{item}}" selected>{{item}}</option>
@@ -40,6 +43,7 @@
 
             <label for="pos-input">Display Position:</label><br>
             <select name="pos-input" id="pos-input">
+                <option value="None">None</option>
                 {% for item in position_dict %}
                 {% if item == "fill"%}
                 <option value="{{item}}" selected>{{item}}</option>
@@ -48,8 +52,17 @@
                 {% endif %}
                 {% endfor %}
             </select><br>
-            <button type="button" onclick="addAnimation">Add Animation</button>
-            <input type="submit" class="submission-button" value="Submit Animations" name="Submit Animations">
+            <button type="button" onclick="addAnimation(true);">Add Animation</button>
+            <input type="submit" class="submission-button" value="Send Animations" name="Send Animations">
+            <!-- Added Animations List Display -->
+            <table id="animation-list-display">
+                <tr id="header-row">
+                    <th>Text</th>
+                    <th>Mode</th>
+                    <th>Color</th>
+                    <th>Position</th>
+                </tr>
+            </table>
         </form>
     </body>
 </html>
