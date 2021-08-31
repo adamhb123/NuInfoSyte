@@ -11,58 +11,66 @@
         <h1>NuInfoSys</h1>
         <script src="{{ url_for('static', filename='js/templates/index.js') }}"></script>
         <!-- For now the site will be 100% functionality, 0% style -->
-        <!-- Animation Input Form -->
-        <form class="data-form" method="post">
-            <label for="text-input">Display Text:</label><br>
-            <input type="text" id="text-input" name="text-input"><br>
+        <div id="animation-section-container">
+            <!-- Animation Input Form -->
+            <div id="add-animation-menu">
+                <input type="text" id="text-input" name="text-input" placeholder="Enter Text"><br>
+                <div id="select-group">
+                    <select name="mode-input" id="mode-input">
+                    <option value="None">None</option>
+                    {% for item in mode_dict %}
+                    {% if item == "automode" and mode_input is not defined or item == mode_input %}
+                    <option value="{{item}}" selected>{{item}}</option>
 
-            <label for="mode-input">Display Mode:</label><br>
-            <select name="mode-input" id="mode-input">
-                <option value="None">None</option>
-                {% for item in mode_dict %}
-                {% if item == "automode" and mode_input is not defined or item == mode_input %}
-                <option value="{{item}}" selected>{{item}}</option>
+                    {% else %}
+                    <option value="{{item}}">{{item}}</option>
+                    {% endif %}
+                    {% endfor %}
+                    </select><br>
 
-                {% else %}
-                <option value="{{item}}">{{item}}</option>
-                {% endif %}
-                {% endfor %}
-            </select><br>
+                    <select name="color-input" id="color-input">
+                        {% for item in color_dict %}
+                        {% if item == "autocolor"%}
+                        <option value="{{item}}" selected>{{item}}</option>
+                        {% else %}
+                        <option value="{{item}}">{{item}}</option>
+                        {% endif %}
+                        {% endfor %}
+                    </select><br>
+                    <select name="pos-input" id="pos-input">
+                        {% for item in position_dict %}
+                        {% if item == "fill"%}
+                        <option value="{{item}}" selected>{{item}}</option>
+                        {% else %}
+                        <option value="{{item}}">{{item}}</option>
+                        {% endif %}
+                        {% endfor %}
+                    </select><br>
+                </div>
 
-            <label for="color-input">Display Color:</label><br>
-            <select name="color-input" id="color-input">
-                <option value="None">None</option>
-                {% for item in color_dict %}
-                {% if item == "autocolor"%}
-                <option value="{{item}}" selected>{{item}}</option>
-                {% else %}
-                <option value="{{item}}">{{item}}</option>
-                {% endif %}
-                {% endfor %}
-            </select><br>
-
-            <label for="pos-input">Display Position:</label><br>
-            <select name="pos-input" id="pos-input">
-                <option value="None">None</option>
-                {% for item in position_dict %}
-                {% if item == "fill"%}
-                <option value="{{item}}" selected>{{item}}</option>
-                {% else %}
-                <option value="{{item}}">{{item}}</option>
-                {% endif %}
-                {% endfor %}
-            </select><br>
-            <button type="button" onclick="addAnimation(true);">Add Animation</button>
-            <input type="submit" class="submission-button" value="Send Animations" name="Send Animations">
+                <button onclick="addAnimation(true);">Add Animation</button>
+                <button onclick="sendAnimations();">Send Animations</button>
+            </div>
             <!-- Added Animations List Display -->
-            <table id="animation-list-display">
-                <tr id="header-row">
-                    <th>Text</th>
-                    <th>Mode</th>
-                    <th>Color</th>
-                    <th>Position</th>
-                </tr>
+            <div id="animation-list-display" class="table-responsive-sm">
+                <h4 class="table-title">Animation List</h4>
+                <table class="table">
+                <thead>
+                    <tr id="header-row">
+                        <th scope="col">#</th>
+                        <th scope="col">Text</th>
+                        <th scope="col">Mode</th>
+                        <th scope="col">Color</th>
+                        <th scope="col">Position</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
             </table>
-        </form>
+            </div>
+        </div>
+
+
     </body>
 </html>

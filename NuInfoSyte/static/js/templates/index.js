@@ -3,7 +3,6 @@ ANIMATION_LIST = []
 
 
 function addAnimation(resetUponAddition=true){
-    console.log("BRUH");
     let textElement = document.querySelector("#text-input");
     let modeElement = document.querySelector("#mode-input");
     let colorElement = document.querySelector("#color-input");
@@ -20,30 +19,46 @@ function addAnimation(resetUponAddition=true){
         colorElement.value = "autocolor";
         positionElement.value = "fill";
     }
-    console.log(ANIMATION_LIST);
     updateAnimationDisplayTable();
 }
 
+function sendAnimations(){
+        console.log(ANIMATION_LIST);
+}
 
+function removeAllChildNodes(parent) {
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
+    }
+}
 
+function addItemToAnimationDisplayTable(index, text, mode, color, position,
+                                        tbody=document.querySelector("#animation-list-display > table > tbody")){
+    let tableRow = document.createElement("tr");
+    let enumeration = document.createElement("th");
+    let textTd = document.createElement("td");
+    let modeTd = document.createElement("td");
+    let colorTd = document.createElement("td");
+    let positionTd = document.createElement("td");
+    enumeration.innerHTML = index;
+    enumeration.scope = "row";
+    textTd.innerHTML = text;
+    modeTd.innerHTML = mode;
+    colorTd.innerHTML = color;
+    positionTd.innerHTML = position;
+    tableRow.appendChild(enumeration);
+    tableRow.appendChild(textTd);
+    tableRow.appendChild(modeTd);
+    tableRow.appendChild(colorTd);
+    tableRow.appendChild(positionTd);
+    tbody.appendChild(tableRow);
+}
 function updateAnimationDisplayTable(){
-    let table = document.querySelector("#animation-list-display");
+    let tbody = document.querySelector("#animation-list-display > table > tbody");
+    removeAllChildNodes(tbody);
     for(item in ANIMATION_LIST){
-    // TODO: erase existing table rows (except header)
-        console.log(item);
-        let tableRow = document.createElement("tr");
-        let textTd = document.createElement("td");
-        let modeTd = document.createElement("td");
-        let colorTd = document.createElement("td");
-        let positionTd = document.createElement("td");
-        textTd.innerHTML = ANIMATION_LIST[item].text;
-        modeTd.innerHTML = ANIMATION_LIST[item].mode;
-        colorTd.innerHTML = ANIMATION_LIST[item].color;
-        positionTd.innerHTML = ANIMATION_LIST[item].position;
-        tableRow.appendChild(textTd);
-        tableRow.appendChild(modeTd);
-        tableRow.appendChild(colorTd);
-        tableRow.appendChild(positionTd);
-        table.appendChild(tableRow);
+        addItemToAnimationDisplayTable(item, ANIMATION_LIST[item].text, ANIMATION_LIST[item].mode,
+                                       ANIMATION_LIST[item].color, ANIMATION_LIST[item].position,
+                                       tbody);
     }
 }

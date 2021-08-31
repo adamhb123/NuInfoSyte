@@ -1,0 +1,52 @@
+h1 {
+    text-align: center;
+    font-size: 4rem;
+    margin: 30px 0px 35px 0px;
+}
+
+.table-title {
+    font-size: 1.5rem;
+    margin: auto;
+}
+
+#add-animation-menu{
+    position: relative;
+    margin: auto auto 25px auto;
+    width:300px;
+    text-align: center;
+    padding: 15px;
+    border: 2px lightgray solid;
+    border-radius: 5px;
+    float:left;
+}
+
+#add-animation-menu > input{
+    width:100%;
+    margin-bottom:15px;
+}
+
+#add-animation-menu > button{
+    width:100%;
+}
+
+#add-animation-menu > #select-group{
+    margin-bottom: 15px;
+}
+
+#add-animation-menu > #select-group > select {
+    width:100%;
+    margin-bottom:5px;
+}
+
+#animation-list-display{
+    width:50%;
+    margin: auto;
+    float:right;
+    min-width: 400px;
+}
+
+#animation-section-container{
+    max-width:800px;
+    min-width: 300px;
+    margin:auto;
+}
