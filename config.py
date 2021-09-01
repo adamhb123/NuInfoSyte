@@ -5,10 +5,10 @@ import os
 from distutils.util import strtobool
 # Flask Config
 DEBUG: bool = strtobool(os.environ.get("DEBUG", "False"))
-IP: str = os.environ.get("NUINFOSYS_IP", "localhost")
-PORT: str = os.environ.get("NUINFOSYS_PORT", "6969")
-PROTOCOL: str = os.environ.get("NUINFOSYS_PROTOCOL", "https://")
-SERVER_NAME: str = os.environ.get("NUINFOSYS_SERVER_NAME", f"{IP}:{PORT}")
+IP: str = os.environ.get("NUINFOSYTE_IP", "localhost")
+PORT: str = os.environ.get("NUINFOSYTE_PORT", "6969")
+PROTOCOL: str = os.environ.get("NUINFOSYTE_PROTOCOL", "http://")
+SERVER_NAME: str = os.environ.get("NUINFOSYTE_SERVER_NAME", f"{IP}:{PORT}")
 
 # NuInfoSyte Config
 DISABLE_WEBSITE: bool = strtobool(os.environ.get("NUINFOSYTE_DISABLE_WEBSITE", "False"))
