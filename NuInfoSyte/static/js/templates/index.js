@@ -23,7 +23,10 @@ function addAnimation(resetUponAddition=true){
 }
 
 function sendAnimations(){
-        console.log(ANIMATION_LIST);
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "/", true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify(ANIMATION_LIST));
 }
 
 function removeAllChildNodes(parent) {
@@ -35,18 +38,23 @@ function removeAllChildNodes(parent) {
 function addItemToAnimationDisplayTable(index, text, mode, color, position,
                                         tbody=document.querySelector("#animation-list-display > table > tbody")){
     let tableRow = document.createElement("tr");
-    let enumeration = document.createElement("th");
+    let count = document.createElement("th");
+    count.className = "table-count-section-entry";
     let textTd = document.createElement("td");
+    textTd.className = "table-text-section-entry";
     let modeTd = document.createElement("td");
+    modeTd.className = "table-mode-section-entry";
     let colorTd = document.createElement("td");
+    colorTd.className = "table-color-section-entry";
     let positionTd = document.createElement("td");
-    enumeration.innerHTML = index;
-    enumeration.scope = "row";
+    positionTd.className = "table-position-section-entry";
+    count.innerHTML = index;
+    count.scope = "row";
     textTd.innerHTML = text;
     modeTd.innerHTML = mode;
     colorTd.innerHTML = color;
     positionTd.innerHTML = position;
-    tableRow.appendChild(enumeration);
+    tableRow.appendChild(count);
     tableRow.appendChild(textTd);
     tableRow.appendChild(modeTd);
     tableRow.appendChild(colorTd);

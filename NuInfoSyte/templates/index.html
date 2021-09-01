@@ -1,7 +1,6 @@
 <!DOCTYPE HTML>
 <html>
     <head>
-        <meta charset="UTF-8">
         <title>NuInfoSys</title>
         {% include 'includes/global-header.html' %}
         <link rel="stylesheet" href="{{ url_for('static', filename='css/templates/index.css') }}">
@@ -13,7 +12,7 @@
         <!-- For now the site will be 100% functionality, 0% style -->
         <div id="animation-section-container">
             <!-- Animation Input Form -->
-            <div id="add-animation-menu">
+            <div id="add-animation-menu" class="floating-menu">
                 <input type="text" id="text-input" name="text-input" placeholder="Enter Text"><br>
                 <div id="select-group">
                     <select name="mode-input" id="mode-input">
@@ -52,12 +51,12 @@
                 <button onclick="sendAnimations();">Send Animations</button>
             </div>
             <!-- Added Animations List Display -->
-            <div id="animation-list-display" class="table-responsive-sm">
+            <div id="animation-list-display" class="floating-menu">
                 <h4 class="table-title">Animation List</h4>
                 <table class="table">
                 <thead>
                     <tr id="header-row">
-                        <th scope="col">#</th>
+                        <th scope="col" id="animation-count-header">#</th>
                         <th scope="col">Text</th>
                         <th scope="col">Mode</th>
                         <th scope="col">Color</th>

@@ -14,12 +14,14 @@ def setup_web_routes():
 
         # Handle form submission
         elif request.method == "POST":
-            print(request.form)
-            animations = request.form.get("animation-list")
+            animations = request.get_json()
+            print(f"REC: {animations}")
             if not app.config["DISABLE_BETABRITE_TRANSMISSION"]:
                 for animation in animations:
-                    nis_middleware.add_animation(animation.text, animation.mode, animation.color, animation.position)
-
+                    print(f"Adding animation: {animation}")
+                    nis_middleware.add_animation(animation['text'], animation['mode'], animation['color'],
+                                                 animation['position'])
+                nis_middleware.send_animations()
             return render_template(
                 'index.html',
                 mode_dict=nis_middleware.get_modes(),
