@@ -15,10 +15,9 @@ def setup_web_routes():
         # Handle form submission
         elif request.method == "POST":
             animations = request.get_json()
-            print(f"REC: {animations}")
             if not app.config["DISABLE_BETABRITE_TRANSMISSION"]:
                 for animation in animations:
-                    print(f"Adding animation: {animation}")
+                    app.logger.info(f"Adding animation: {animation}")
                     nis_middleware.add_animation(animation['text'], animation['mode'], animation['color'],
                                                  animation['position'])
                 nis_middleware.send_animations()
