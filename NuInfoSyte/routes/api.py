@@ -33,7 +33,7 @@ def setup_api_routes() -> None:
         """
 
         json = request.get_json()
-        text, mode, color, position = _safe_get_all(json, ["text", "mode", "color", "position"])
+        text, mode, color= _safe_get_all(json, ["text", "mode", "color"])
         response = {
             "result": "Success",
             "payload": {
@@ -54,14 +54,13 @@ def setup_api_routes() -> None:
 
         json = request.get_json()
 
-        text, mode, color, position = _safe_get_all(json, ["text", "mode", "color", "position"])
+        text, mode, color = _safe_get_all(json, ["text", "mode", "color"])
         response = {
             "result": "Success",
             "payload": {
                 "text": text,
                 "mode": mode,
-                "color": color,
-                "position": position
+                "color": color
             }
         }
         return jsonify(response)

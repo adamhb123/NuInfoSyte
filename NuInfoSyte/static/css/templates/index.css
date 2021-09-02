@@ -65,7 +65,7 @@ h1 {
 #animation-count-header {
     width: 50px;
 }
-.table-count-section-entry, .table-mode-section-entry, .table-position-section-entry, .table-color-section-entry{
+.table-count-section-entry, .table-mode-section-entry, .table-color-section-entry{
     white-space: nowrap;
 }
 

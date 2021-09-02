@@ -9,8 +9,8 @@ from NuInfoSyte.NuInfoSys import betabrite  # type: ignore
 ANIMATIONS = []
 
 
-def add_animation(text: str = None, mode: str = None, color: str = None, position: str = None) -> None:
-    ANIMATIONS.append(betabrite.Animation(text, mode, color, position))
+def add_animation(text: str = None, mode: str = None, color: str = None) -> None:
+    ANIMATIONS.append(betabrite.Animation(text, mode, color))
 
 
 def send_animations() -> None:
