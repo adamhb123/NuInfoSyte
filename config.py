@@ -17,4 +17,4 @@ DISABLE_API: bool = strtobool(os.environ.get("NUINFOSYTE_DISABLE_API", "False"))
 DISABLE_BETABRITE_TRANSMISSION: bool = strtobool(os.environ.get("NUINFOSYTE_DISABLE_BETABRITE_TRANSMISSION", "False"))
 # See flask limiter docs for usable syntax for these rate limits
 WEB_RATE_LIMIT = "50/day"
-API_RATE_LIMIT = "1/second"
+API_RATE_LIMIT = "30/minute"
