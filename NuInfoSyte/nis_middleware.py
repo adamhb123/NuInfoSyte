@@ -4,7 +4,7 @@ Handles NuInfoSyte's web/api - NuInfoSys inter-operations
 """
 
 from typing import List
-from NuInfoSyte.NuInfoSys import betabrite  # type: ignore
+from NuInfoSys import betabrite  # type: ignore
 
 ANIMATIONS = []
 
@@ -33,26 +33,26 @@ def get_positions(sort: bool = True) -> List:
 
 
 def supreme_mode() -> None:
-    add_animation("Monster Energy presents...", "sparkle", "amber", None)
-    add_animation("The Adam Brewer Memorial User Center", "cmprsrot", "rainbow2", None)
-    add_animation("", "nosmoking", "", "")
-    add_animation("", "drinkdrive", "", "")
+    add_animation("Monster Energy presents...", "sparkle", "amber")
+    add_animation("The Adam Brewer Memorial User Center", "cmprsrot", "rainbow2")
+    add_animation("", "nosmoking", "")
+    add_animation("", "drinkdrive", "")
     send_animations()
 
 
 def snowflake_mode() -> None:
-    add_animation("Welcome to Computer Science House!", "cmprsrot", "rainbow2", None)
-    add_animation("", "cherrybomb", None, None)
-    add_animation("Est. 1976", "sparkle", "amber", None)
-    add_animation("", "sparkle", None, None)
+    add_animation("Welcome to Computer Science House!", "cmprsrot", "rainbow2")
+    add_animation("", "cherrybomb", None)
+    add_animation("Est. 1976", "sparkle", "amber")
+    add_animation("", "sparkle", None)
     send_animations()
 
 
 def based_mode() -> None:
-    add_animation("", "drinkdrive", "", "")
-    add_animation("@channel in #general", "sparkle", "amber", None)
-    add_animation("", "nosmoking", "", "")
-    add_animation("message brewer for a packet signature", "cherrybomb", "rainbow2", None)
+    add_animation("", "drinkdrive", "")
+    add_animation("@channel in #general", "sparkle", "amber")
+    add_animation("", "nosmoking", "")
+    add_animation("message brewer for a packet signature", "cherrybomb", "rainbow2")
     send_animations()
 
 
