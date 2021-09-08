@@ -14,7 +14,8 @@ from typing import Any, List
 
 from flask import render_template, request, jsonify, Response
 
-from NuInfoSyte import app
+import config
+from NuInfoSyte import app, limiter
 
 
 def _safe_get(dictionary: dict, key: Any) -> Any: return dictionary[key] if key in dictionary else None
@@ -26,6 +27,7 @@ def _safe_get_all(dictionary: dict, keys: List[Any]) -> Any:
 
 def setup_api_routes() -> None:
     @app.route("/send-animation-single", methods=["PUT"])
+    @limiter.limit(config.API_RATE_LIMIT)
     def send_animation_single() -> Response:
         """
         POST endpoint for handling animation requests containing a single animation
@@ -46,6 +48,7 @@ def setup_api_routes() -> None:
         return jsonify(response)
 
     @app.route("/send-animation-multi", methods=["PUT"])
+    @limiter.limit(config.API_RATE_LIMIT)
     def send_animation_multi() -> Response:
         """
         POST endpoint for handling requests containing multiple animations
@@ -68,6 +71,7 @@ def setup_api_routes() -> None:
 
 def setup_web_routes():
     @app.route("/api", methods=["GET"])
+    @limiter.limit(config.WEB_RATE_LIMIT)
     def api_index() -> str:
         """
         [API Index]

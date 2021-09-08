@@ -1,9 +1,12 @@
 from flask import render_template, request
-from NuInfoSyte import app, nis_middleware
+
+import config
+from NuInfoSyte import app, nis_middleware, limiter
 
 
 def setup_web_routes():
     @app.route("/", methods=['GET', 'POST'])
+    @limiter.limit(config.WEB_RATE_LIMIT)
     def index():
         # Serve index
         if request.method == "GET":
