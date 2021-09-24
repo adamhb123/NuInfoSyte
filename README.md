@@ -6,6 +6,6 @@ git clone --recurse-submodules git@github.com:adamhb123/NuInfoSyte
 ```
 tbd
 ## Notes
-In the future I may remove the NuInfoSys submodule and simply
-make it an installable PyPi package. For now having it as a submodule
-makes development simpler.
+I plan to separate the website and API. Likely use React for the site, 
+and the api will probably be served in the way that it is now.
+
