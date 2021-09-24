@@ -2,7 +2,7 @@
 ## Installation
 Clone the repository
 ```
-git clone --recurse-submodules git@github.com:adamhb123/NuInfoSyte
+git clone git@github.com:adamhb123/NuInfoSyte
 ```
 tbd
 ## Notes
