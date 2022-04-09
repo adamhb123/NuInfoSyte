@@ -19,7 +19,6 @@ from NuInfoSys.betabrite import Animation
 from NuInfoSyte import app, limiter, nis_middleware
 
 
-
 def _safe_get(dictionary: dict, key: Any) -> Any: return dictionary[key] if key in dictionary else None
 
 
@@ -32,7 +31,8 @@ def parse_single_animation_payload_json(json: dict) -> dict:
     Parses single animation json from given json dict
     """
     text, mode, color = _safe_get_all(json, ["text", "mode", "color"])
-    return { "text": text, "mode": mode, "color": color }
+    return {"text": text, "mode": mode, "color": color}
+
 
 def setup_api_routes() -> None:
     @app.route("/send-animation-single", methods=["PUT"])
@@ -45,7 +45,7 @@ def setup_api_routes() -> None:
         json = request.get_json()
         payload: dict = parse_single_animation_payload_json(json)
         nis_middleware.add_animation(payload["text"], payload["mode"], payload["color"])
-        nis_middleware.send_animation()
+        nis_middleware.send_animations()
         response = {
             "result": "Success",
             "received": json
@@ -62,8 +62,7 @@ def setup_api_routes() -> None:
         DOESN'T CURRENTLY FUNCTION
         """
         json = request.get_json()
-        animations: List[Animation] = []
-        for(jval in json.values()):
+        for jval in json.values():
             parsed: dict = parse_single_animation_payload_json(jval)
             nis_middleware.add_animation(parsed["text"], parsed["mode"], parsed["color"])
         nis_middleware.send_animations()
