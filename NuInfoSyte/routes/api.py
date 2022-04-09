@@ -30,7 +30,7 @@ def setup_api_routes() -> None:
     @limiter.limit(config.API_RATE_LIMIT)
     def send_animation_single() -> Response:
         """
-        POST endpoint for handling animation requests containing a single animation
+        PUT endpoint for handling animation requests containing a single animation
         :return: JSON Response with the payload data sent by the user (essentially formats and mirrors the data)
         """
 
@@ -51,7 +51,7 @@ def setup_api_routes() -> None:
     @limiter.limit(config.API_RATE_LIMIT)
     def send_animation_multi() -> Response:
         """
-        POST endpoint for handling requests containing multiple animations
+        PUT endpoint for handling requests containing multiple animations
         :return: JSON Response with the payload data sent by the user (essentially formats and mirrors the data)
         """
 
