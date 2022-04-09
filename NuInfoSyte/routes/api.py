@@ -15,11 +15,24 @@ from typing import Any, List
 from flask import render_template, request, jsonify, Response
 
 import config
-from NuInfoSyte import app, limiter
+from NuInfoSys.betabrite import Animation
+from NuInfoSyte import app, limiter, nis_middleware
+
 
 
 def _safe_get(dictionary: dict, key: Any) -> Any: return dictionary[key] if key in dictionary else None
 
+
+def _safe_get_all(dictionary: dict, keys: List[Any]) -> Any:
+    return [dictionary[key] if key in dictionary else None for key in keys]
+
+
+def parse_single_animation_payload_json(json: dict) -> dict:
+    """
+    Parses single animation json from given json dict
+    """
+    text, mode, color = _safe_get_all(json, ["text", "mode", "color"])
+    return { "text": text, "mode": mode, "color": color }
 
 def setup_api_routes() -> None:
     @app.route("/send-animation-single", methods=["PUT"])
@@ -29,16 +42,13 @@ def setup_api_routes() -> None:
         PUT endpoint for handling animation requests containing a single animation
         :return: JSON Response with the payload data sent by the user (essentially formats and mirrors the data)
         """
-
         json = request.get_json()
-        text, mode, color = _safe_get(json, "text"), _safe_get(json, "mode"), _safe_get(json ,"color")
+        payload: dict = parse_single_animation_payload_json(json)
+        nis_middleware.add_animation(payload["text"], payload["mode"], payload["color"])
+        nis_middleware.send_animation()
         response = {
             "result": "Success",
-            "payload": {
-                "text": text,
-                "mode": mode,
-                "color": color
-            }
+            "received": json
         }
         return jsonify(response)
 
@@ -48,23 +58,23 @@ def setup_api_routes() -> None:
         """
         PUT endpoint for handling requests containing multiple animations
         :return: JSON Response with the payload data sent by the user (essentially formats and mirrors the data)
+
+        DOESN'T CURRENTLY FUNCTION
         """
-
         json = request.get_json()
-
-        text, mode, color = _safe_get(json, "text"), _safe_get(json, "mode"), _safe_get(json ,"color")
+        animations: List[Animation] = []
+        for(jval in json.values()):
+            parsed: dict = parse_single_animation_payload_json(jval)
+            nis_middleware.add_animation(parsed["text"], parsed["mode"], parsed["color"])
+        nis_middleware.send_animations()
         response = {
             "result": "Success",
-            "payload": {
-                "text": text,
-                "mode": mode,
-                "color": color
-            }
+            "received": json
         }
         return jsonify(response)
 
 
-def setup_web_routes() -> None:
+def setup_web_routes():
     @app.route("/api", methods=["GET"])
     @limiter.limit(config.WEB_RATE_LIMIT)
     def api_index() -> str:
