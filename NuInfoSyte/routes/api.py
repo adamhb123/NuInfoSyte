@@ -20,6 +20,11 @@ from NuInfoSyte import app, limiter
 
 def _safe_get(dictionary: dict, key: Any) -> Any: return dictionary[key] if key in dictionary else None
 
+
+def _safe_get_all(dictionary: dict, keys: List[Any]) -> Any:
+    return [dictionary[key] if key in dictionary else None for key in keys]
+
+
 def setup_api_routes() -> None:
     @app.route("/send-animation-single", methods=["PUT"])
     @limiter.limit(config.API_RATE_LIMIT)
@@ -30,14 +35,13 @@ def setup_api_routes() -> None:
         """
 
         json = request.get_json()
-        text, mode, color = _safe_get(json, "text"), _safe_get(json, "mode"), _safe_get(json, "color")
+        text, mode, color = _safe_get_all(json, ["text", "mode", "color"])
         response = {
             "result": "Success",
             "payload": {
                 "text": text,
                 "mode": mode,
-                "color": color,
-                "position": position
+                "color": color
             }
         }
         return jsonify(response)
@@ -52,7 +56,7 @@ def setup_api_routes() -> None:
 
         json = request.get_json()
 
-        text, mode, color = _safe_get(json, "text"), _safe_get(json, "mode"), _safe_get(json, "color")
+        text, mode, color = _safe_get_all(json, ["text", "mode", "color"])
         response = {
             "result": "Success",
             "payload": {
