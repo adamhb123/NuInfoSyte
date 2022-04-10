@@ -62,7 +62,7 @@ def setup_api_routes() -> None:
         DOESN'T CURRENTLY FUNCTION
         """
         json = request.get_json()
-        for jval in json.values():
+        for jval in json:
             parsed: dict = parse_single_animation_payload_json(jval)
             nis_middleware.add_animation(parsed["text"], parsed["mode"], parsed["color"])
         nis_middleware.send_animations()
