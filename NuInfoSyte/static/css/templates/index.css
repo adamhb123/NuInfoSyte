@@ -23,7 +23,7 @@ h1 {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
- }
+}
 
  h1::after {
     content: '';
@@ -43,7 +43,7 @@ h1 {
     display: block;
     text-shadow: 0 0 0.1em #8ba2d0, 0 0 0.2em black,  0 0 5em #165ff3;
     -webkit-text-stroke: 0.06em rgba(black, 0.5);
- }
+}
 
 span:last-child {
     position: absolute;
@@ -108,6 +108,15 @@ span:last-child {
 .table-count-section-entry, .table-mode-section-entry, .table-color-section-entry {
     white-space: nowrap;
 }
+
+#header-row {
+    background-color: transparent;
+}
+
+tr:hover {
+    background-color: #cc0000;
+}
+
 th, td {
     border: 1px solid lightgray;
 }

@@ -19,7 +19,30 @@ function addAnimation(resetUponAddition=true){
     updateAnimationDisplayTable();
 }
 
-function sendAnimations(){
+function tableRowClickHandler(event) {
+    /**
+     * Click handler for animation list rows
+     * Removes animation on click
+     */
+    let element = event.target;
+    // Td ->
+    element = element.parentNode;
+    console.log(element);
+    if(element.tagName !== "TR") {
+        console.error("Could not find proper table row element...");
+        return;
+    }
+    let countTd = element.getElementsByClassName("table-count-section-entry")[0];
+    let textTd = element.getElementsByClassName("table-text-section-entry")[0];
+    let modeTd = element.getElementsByClassName("table-mode-section-entry")[0];
+    let colorTd = element.getElementsByClassName("table-color-section-entry")[0];
+    console.log(countTd.innerHTML);
+    ANIMATION_LIST.splice(parseInt(countTd.innerHTML), 1);
+    element.remove();
+    updateAnimationDisplayTable();
+}
+
+function sendAnimations() {
     let xhr = new XMLHttpRequest();
     xhr.open("POST", "/", true);
     xhr.setRequestHeader('Content-Type', 'application/json');
@@ -35,6 +58,7 @@ function removeAllChildNodes(parent) {
 function addItemToAnimationDisplayTable(index, text, mode, color,
                                         tbody=document.querySelector("#animation-list-display > table > tbody")){
     let tableRow = document.createElement("tr");
+    tableRow.addEventListener("click", tableRowClickHandler);
     let count = document.createElement("th");
     count.className = "table-count-section-entry";
     let textTd = document.createElement("td");
