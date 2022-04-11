@@ -18,7 +18,7 @@ h1 {
 }
 
 
-#add-animation-menu{
+#add-animation-menu {
     position: relative;
     margin: auto auto 25px auto;
     width:350px;
@@ -46,12 +46,13 @@ h1 {
     margin-bottom:5px;
 }
 
-#animation-list-display{
+#animation-list-display {
     margin: auto;
     text-align: center;
     padding: 15px;
     border: 2px lightgray solid;
     border-radius: 5px;
+    width: 80%;
 }
 
 #animation-list-display > table {
