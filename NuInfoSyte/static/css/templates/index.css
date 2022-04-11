@@ -15,29 +15,29 @@ h1 {
 }
 
 .floating-menu {
-}
 
+}
 
 #add-animation-menu {
     position: relative;
     margin: auto auto 25px auto;
-    width:350px;
+    width: 50%;
     text-align: center;
     padding: 15px;
     border: 2px lightgray solid;
     border-radius: 5px;
 }
 
-#add-animation-menu > input{
-    width:100%;
-    margin-bottom:15px;
+#add-animation-menu > input {
+    width: 100%;
+    margin-bottom: 15px;
 }
 
-#add-animation-menu > button{
-    width:100%;
+#add-animation-menu > button {
+    width: 100%;
 }
 
-#add-animation-menu > #select-group{
+#add-animation-menu > #select-group {
     margin-bottom: 15px;
 }
 
@@ -63,34 +63,28 @@ h1 {
 #animation-count-header {
     width: 50px;
 }
-.table-count-section-entry, .table-mode-section-entry, .table-color-section-entry{
+.table-count-section-entry, .table-mode-section-entry, .table-color-section-entry {
     white-space: nowrap;
 }
 
-#header-row > th{
+#header-row > th {
     font-size: 1rem;
 }
 .table-text-section-entry {
     text-align: left;
 }
 
-
 #animation-section-container {
     max-width:900px;
     min-width: 400px;
     margin:auto;
 }
-@media only screen and (max-width: 880px){
+@media only screen and (max-width: 880px) {
     #animation-section-container {
         width:80%;
         margin:auto;
     }
-    #animation-list-display {
-        width: 100%;
-        float: none;
-    }
-
-    #add-animation-menu {
+    #animation-list-display, #add-animation-menu {
         width: 100%;
         float: none;
     }

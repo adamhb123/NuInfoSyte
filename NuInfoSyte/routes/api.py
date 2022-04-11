@@ -48,7 +48,7 @@ def setup_api_routes() -> None:
         nis_middleware.send_animations()
         response = {
             "payload": json,
-            "result": "Success"
+            "result": "Acknowledged"
         }
         return jsonify(response)
 
@@ -68,7 +68,7 @@ def setup_api_routes() -> None:
         nis_middleware.send_animations()
         response = {
             "payload": json,
-            "result": "Success"
+            "result": "Acknowledged"
         }
         return jsonify(response)
 
