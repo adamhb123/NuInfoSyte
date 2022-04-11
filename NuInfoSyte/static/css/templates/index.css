@@ -26,7 +26,6 @@ h1 {
     padding: 15px;
     border: 2px lightgray solid;
     border-radius: 5px;
-    float:left;
 }
 
 #add-animation-menu > input{
@@ -48,9 +47,7 @@ h1 {
 }
 
 #animation-list-display{
-    width:525px;
     margin: auto;
-    float:right;
     text-align: center;
     padding: 15px;
     border: 2px lightgray solid;

@@ -73,7 +73,7 @@ def setup_api_routes() -> None:
         return jsonify(response)
 
 
-def setup_web_routes():
+def setup_web_routes() -> None:
     @app.route("/api", methods=["GET"])
     @limiter.limit(config.WEB_RATE_LIMIT)
     def api_index() -> str:
