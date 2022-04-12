@@ -24,7 +24,7 @@ SECRET_KEY = os.environ.get("NUINFOSYS_SECRET_KEY", "poopfart")
 OIDC_ISSUER = os.environ.get("NUINFOSYTE_OIDC_ISSUER", "https://sso.csh.rit.edu/auth/realms/csh")
 OIDC_REDIRECT_URI = os.environ.get("NUINFOSYTE_OIDC_REDIRECT_URI", PROTOCOL+IP+":"+PORT+"/authentication/callback")
 OIDC_CLIENT_CONFIG = {
-    "client_id": os.environ.get("NUINFOSYTE_OIDC_CLIENT_ID", "react-boilerplate"),
+    "client_id": os.environ.get("NUINFOSYTE_OIDC_CLIENT_ID", "infosys"),
     "client_secret": os.environ.get("NUINFOSYTE_OIDC_CLIENT_SECRET", ""),
     "post_logout_redirect_uris": [os.environ.get("NUINFOSYTE_OIDC_LOGOUT_REDIRECT_URI", "amongus")]
 }
