@@ -13,7 +13,7 @@ app = Flask(__name__)
 app.config.from_object("config")
 client_metadata = ClientMetadata(app.config["OIDC_CLIENT_CONFIG"]["client_id"],
                                  app.config["OIDC_CLIENT_CONFIG"]["client_secret"],
-                                 post_logout_redirect_uris=[app.config["OIDC_REDIRECT_URI"])
+                                 post_logout_redirect_uris=[app.config["OIDC_REDIRECT_URI"]])
 
 provider_config = ProviderConfiguration(issuer=app.config["OIDC_ISSUER"],
                                         client_metadata=client_metadata)
