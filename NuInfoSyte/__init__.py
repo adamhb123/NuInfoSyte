@@ -26,15 +26,6 @@ limiter = Limiter(
     key_func=get_remote_address
 )
 
-
 # setup routes
-@app.route("/login")
-@auth.oidc_auth("default")
-def login():
-    user_session = UserSession(flask.session)
-    return flask.jsonify(access_token=user_session.access_token,
-                         id_token=user_session.id_token,
-                         userinfo=user_session.userinfo)
-
 
 from NuInfoSyte.routes import index, api, error

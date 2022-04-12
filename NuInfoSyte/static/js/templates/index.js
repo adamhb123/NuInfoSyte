@@ -27,7 +27,6 @@ function tableRowClickHandler(event) {
     let element = event.target;
     // Td ->
     element = element.parentNode;
-    console.log(element);
     if(element.tagName !== "TR") {
         console.error("Could not find proper table row element...");
         return;
@@ -36,7 +35,6 @@ function tableRowClickHandler(event) {
     let textTd = element.getElementsByClassName("table-text-section-entry")[0];
     let modeTd = element.getElementsByClassName("table-mode-section-entry")[0];
     let colorTd = element.getElementsByClassName("table-color-section-entry")[0];
-    console.log(countTd.innerHTML);
     ANIMATION_LIST.splice(parseInt(countTd.innerHTML), 1);
     element.remove();
     updateAnimationDisplayTable();

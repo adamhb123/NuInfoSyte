@@ -7,6 +7,7 @@
         <link rel="stylesheet" href="{{ url_for('static', filename='css/templates/error.css') }}">
     </head>
     <body>
+        <img id="profile-image" src="https://profiles.csh.rit.edu/image/{{preferred_username}}">
         <h1>Error!</h1>
         <h2>Code: {{ error_code }}</h2>
         <h3>Custom response: {{ unique_response_string }}</h3>
