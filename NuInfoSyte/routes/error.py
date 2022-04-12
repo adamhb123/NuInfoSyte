@@ -2,7 +2,7 @@ from flask import render_template, request
 from typing import Dict
 from werkzeug.exceptions import HTTPException
 
-from NuInfoSyte import app
+from NuInfoSyte import app, auth, provider_config
 
 # Dict items are in CODE: UNIQUE RESPONSE STRING form
 UNIQUE_ERROR_RESPONSES: Dict[int, str] = {
@@ -11,6 +11,7 @@ UNIQUE_ERROR_RESPONSES: Dict[int, str] = {
 
 
 def setup_web_errorhandler():
+    @auth.oidc_auth("default")
     @app.errorhandler(HTTPException)
     def error(e):
         if request.method == "GET":

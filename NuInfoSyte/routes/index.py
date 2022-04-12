@@ -1,17 +1,20 @@
-from flask import render_template, request
-
+from flask import render_template, request, session
+from flask_pyoidc.user_session import UserSession
 import config
-from NuInfoSyte import app, nis_middleware, limiter
+from NuInfoSyte import app, auth, nis_middleware, limiter
 
 
 def setup_web_routes():
     @app.route("/", methods=['GET', 'POST'])
     @limiter.limit(config.WEB_RATE_LIMIT)
+    @auth.oidc_auth("default")
     def index():
         # Serve index
         if request.method == "GET":
+            user_session = UserSession(session)
             return render_template(
-                'index.html',
+                "index.html",
+                preferred_username=user_session.userinfo["preferred_username"],
                 mode_dict=nis_middleware.get_modes(),
                 color_dict=nis_middleware.get_colors()
             )

@@ -16,7 +16,7 @@ from flask import render_template, request, jsonify, Response
 
 import config
 from NuInfoSys.betabrite import Animation
-from NuInfoSyte import app, limiter, nis_middleware
+from NuInfoSyte import app, auth, limiter, nis_middleware, provider_config
 
 
 def _safe_get(dictionary: dict, key: Any) -> Any: return dictionary[key] if key in dictionary else None
@@ -76,6 +76,7 @@ def setup_api_routes() -> None:
 def setup_web_routes() -> None:
     @app.route("/api", methods=["GET"])
     @limiter.limit(config.WEB_RATE_LIMIT)
+    @auth.oidc_auth("default")
     def api_index() -> str:
         """
         [API Index]
