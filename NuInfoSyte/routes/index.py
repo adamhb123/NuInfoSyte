@@ -1,12 +1,11 @@
 from flask import render_template, request, session
 from flask_pyoidc.user_session import UserSession
-import config
 from NuInfoSyte import app, auth, nis_middleware, limiter
 
 
 def setup_web_routes():
     @app.route("/", methods=['GET', 'POST'])
-    @limiter.limit(config.WEB_RATE_LIMIT)
+    @limiter.limit(app.config["WEB_RATE_LIMIT"])
     @auth.oidc_auth("default")
     def index():
         # Serve index

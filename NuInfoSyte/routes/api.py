@@ -14,8 +14,6 @@ from typing import Any, List
 
 from flask import render_template, request, jsonify, Response
 
-import config
-from NuInfoSys.betabrite import Animation
 from NuInfoSyte import app, auth, limiter, nis_middleware, provider_config
 
 
@@ -36,7 +34,7 @@ def parse_single_animation_payload_json(json: dict) -> dict:
 
 def setup_api_routes() -> None:
     @app.route("/send-animation-single", methods=["PUT"])
-    @limiter.limit(config.API_RATE_LIMIT)
+    @limiter.limit(app.config["API_RATE_LIMIT"])
     def send_animation_single() -> Response:
         """
         PUT endpoint for handling animation requests containing a single animation
@@ -53,7 +51,7 @@ def setup_api_routes() -> None:
         return jsonify(response)
 
     @app.route("/send-animation-multi", methods=["PUT"])
-    @limiter.limit(config.API_RATE_LIMIT)
+    @limiter.limit(app.config["API_RATE_LIMIT"])
     def send_animation_multi() -> Response:
         """
         PUT endpoint for handling requests containing multiple animations
@@ -75,7 +73,7 @@ def setup_api_routes() -> None:
 
 def setup_web_routes() -> None:
     @app.route("/api", methods=["GET"])
-    @limiter.limit(config.WEB_RATE_LIMIT)
+    @limiter.limit(app.config["WEB_RATE_LIMIT"])
     @auth.oidc_auth("default")
     def api_index() -> str:
         """
