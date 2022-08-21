@@ -1,13 +1,19 @@
 from flask import render_template, request, session
 from flask_pyoidc.user_session import UserSession
 from NuInfoSyte import app, auth, nis_middleware, limiter
+from NuInfoSyte.routes import error
 
 
-def setup_web_routes():
+def setup_web_routes() -> None:
+    @app.route('/logout')
+    @auth.oidc_logout
+    def logout() -> str:
+        return "You've been successfully logged out!"
+
     @app.route("/", methods=['GET', 'POST'])
     @limiter.limit(app.config["WEB_RATE_LIMIT"])
     @auth.oidc_auth("default")
-    def index():
+    def index() -> str:
         # Serve index
         if request.method == "GET":
             user_session = UserSession(session)
@@ -21,16 +27,19 @@ def setup_web_routes():
         # Handle form submission
         elif request.method == "POST":
             animations = request.get_json()
-            if not app.config["DISABLE_BETABRITE_TRANSMISSION"]:
+            if animations and not app.config["DISABLE_BETABRITE_TRANSMISSION"]:
                 for animation in animations:
                     app.logger.info(f"Adding animation: {animation}")
-                    nis_middleware.add_animation(animation['text'], animation['mode'], animation['color'])
+                    nis_middleware.add_animation(
+                        animation['text'], animation['mode'], animation['color'])
                 nis_middleware.send_animations()
-            return render_template(
-                'index.html',
-                mode_dict=nis_middleware.get_modes(),
-                color_dict=nis_middleware.get_colors()
-            )
+                return render_template(
+                    'index.html',
+                    mode_dict=nis_middleware.get_modes(),
+                    color_dict=nis_middleware.get_colors()
+                )
+        else:
+            return 
 
 
 if not app.config['DISABLE_WEBSITE']:

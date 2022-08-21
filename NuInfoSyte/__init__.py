@@ -11,9 +11,13 @@ from NuInfoSyte import nis_middleware
 
 app = Flask(__name__)
 app.config.from_object("config")
-client_metadata = ClientMetadata(app.config["OIDC_CLIENT_CONFIG"]["client_id"],
-                                 app.config["OIDC_CLIENT_CONFIG"]["client_secret"],
-                                 post_logout_redirect_uris=[app.config["OIDC_REDIRECT_URI"]])
+
+if app.config["OIDC_POST_LOGOUT_REDIRECT_URIS"]:
+    client_metadata = ClientMetadata(app.config["OIDC_CLIENT_ID"], app.config["OIDC_CLIENT_SECRET"],
+                                     post_logout_redirect_uris=app.config["OIDC_POST_LOGOUT_REDIRECT_URIS"])
+else:
+    client_metadata = ClientMetadata(
+        app.config["OIDC_CLIENT_ID"], app.config["OIDC_CLIENT_SECRET"])
 
 provider_config = ProviderConfiguration(issuer=app.config["OIDC_ISSUER"],
                                         client_metadata=client_metadata)
@@ -25,5 +29,4 @@ limiter = Limiter(
 )
 
 # setup routes
-
-from NuInfoSyte.routes import index, api, error
+from NuInfoSyte.routes import web, api, error
