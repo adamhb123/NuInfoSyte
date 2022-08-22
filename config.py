@@ -12,7 +12,6 @@ load_dotenv()  # take environment variables from .env.
 def stb_envget(envvar: str, default: str) -> bool: return bool(strtobool(
     os.environ.get(envvar, default)))
 
-
 # Flask ConfigE
 DEBUG: bool = stb_envget("DEBUG", "False")
 IP: str = os.environ.get("NUINFOSYTE_IP", "localhost")
