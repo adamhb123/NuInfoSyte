@@ -11,12 +11,10 @@ the job done, and I'll try and make it nicer over time.
 """
 import time
 from datetime import datetime
-from enum import Enum
 from typing import Union, List, Dict
 import random
 from serial import Serial
 from .framecontrolbytes import FrameControlBytes
-from .memory import *
 
 '''
 Configurables

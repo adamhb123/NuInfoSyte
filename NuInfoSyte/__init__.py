@@ -7,7 +7,6 @@ from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 from flask_pyoidc.flask_pyoidc import OIDCAuthentication
 from flask_pyoidc.provider_configuration import ProviderConfiguration, ClientMetadata
-from NuInfoSyte import nis_middleware
 
 app = Flask(__name__)
 app.config.from_object("config")

@@ -1,18 +1,17 @@
 from flask import render_template, request, session
 from flask_pyoidc.user_session import UserSession
 from NuInfoSyte import app, auth, nis_middleware, limiter
-from NuInfoSyte.routes import error
 
 
 def setup_web_routes() -> None:
-    @app.route('/logout')
     @auth.oidc_logout
+    @app.route('/logout')
     def logout() -> str:
         return "You've been successfully logged out!"
 
-    @app.route("/", methods=['GET', 'POST'])
-    @limiter.limit(app.config["WEB_RATE_LIMIT"])
     @auth.oidc_auth("default")
+    @limiter.limit(app.config["WEB_RATE_LIMIT"])
+    @app.route("/", methods=['GET', 'POST'])
     def index() -> str:
         # Serve index
         if request.method == "GET":
@@ -38,8 +37,6 @@ def setup_web_routes() -> None:
                     mode_dict=nis_middleware.get_modes(),
                     color_dict=nis_middleware.get_colors()
                 )
-        else:
-            return 
 
 
 if not app.config['DISABLE_WEBSITE']:

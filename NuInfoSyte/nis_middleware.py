@@ -6,50 +6,12 @@ Handles NuInfoSyte's web/api - NuInfoSys inter-operations
 import requests
 from typing import List, Optional, Union, Callable, Dict
 from dataclasses import dataclass, field
+from NuInfoSyte import app
 
+#APIADDRESS = f"{app.config['PROTOCOL']}{app.config['IP']}:{app.config['PORT']}"
+APIADDRESS = "http://localhost:3001"
+print("API: " + APIADDRESS)
 
-@dataclass
-class APIAddress:
-    protocol: Optional[str] = None
-    ip: Optional[str] = None
-    port: Optional[Union[str, int]] = None
-    endpoints: Dict[str, str] = field(default_factory=lambda: {
-        "send-animations": "send-animations",
-        "add-animation": "add-animation",
-        "remove-animation": "remove-animation",
-        "get-colors": "colors",
-        "get-modes": "modes",
-        "get-positions": "positions"
-    })
-
-    def is_initialized(self):
-        return all([self.protocol, self.ip])
-
-    def __str__(self):
-        return f"{APIADDRESS.protocol}{APIADDRESS.ip}:{APIADDRESS.port}"
-
-
-APIADDRESS = APIAddress()
-
-
-def InitVerifier(func: Callable):
-    def wrapper(*args, **kwargs):
-        if APIADDRESS.is_initialized:
-            return func(*args, **kwargs)
-        else:
-            raise Exception("Address not initialized")
-
-    return wrapper
-
-
-@InitVerifier
-def initialize(protocol: str, ip: str, port: Optional[Union[str, int]]):
-    APIADDRESS.protocol = protocol
-    APIADDRESS.ip = ip
-    APIADDRESS.port = port
-
-
-@InitVerifier
 def add_animation(text: Optional[str] = None, mode: Optional[str] = None, color: Optional[str] = None) -> None:
     """
     Add animation
@@ -61,7 +23,6 @@ def add_animation(text: Optional[str] = None, mode: Optional[str] = None, color:
     })
 
 
-@InitVerifier
 def remove_animation(text: Optional[str] = None, mode: Optional[str] = None, color: Optional[str] = None) -> None:
     """
     Remove animation TO BE DONE NOT FINISHED
@@ -78,7 +39,6 @@ def remove_animation(text: Optional[str] = None, mode: Optional[str] = None, col
     })
 
 
-@InitVerifier
 def send_animations() -> None:
     """
     Send animation
@@ -86,7 +46,6 @@ def send_animations() -> None:
     requests.put(f"{APIADDRESS}/remove-animation")
 
 
-@InitVerifier
 def get_modes() -> List:
     """
     Get modes
@@ -97,7 +56,6 @@ def get_modes() -> List:
         return sorted(modes)
 
 
-@InitVerifier
 def get_colors() -> List:
     """
     Get colors
@@ -107,7 +65,6 @@ def get_colors() -> List:
         return sorted(colors)
 
 
-@InitVerifier
 def get_positions() -> List:
     """
     Get positions
@@ -118,7 +75,6 @@ def get_positions() -> List:
         return sorted(positions)
 
 
-@InitVerifier
 def supreme_mode() -> None:
     """
     Supreme mode
@@ -131,7 +87,6 @@ def supreme_mode() -> None:
     send_animations()
 
 
-@InitVerifier
 def snowflake_mode() -> None:
     add_animation("Welcome to Computer Science House!", "cmprsrot", "rainbow2")
     add_animation("", "cherrybomb", None)
@@ -140,7 +95,6 @@ def snowflake_mode() -> None:
     send_animations()
 
 
-@InitVerifier
 def based_mode() -> None:
     add_animation("", "drinkdrive", "")
     add_animation("@channel in #general", "sparkle", "amber")

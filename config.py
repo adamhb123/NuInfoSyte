@@ -40,5 +40,5 @@ OIDC_REDIRECT_URI = os.environ.get(
 OIDC_POST_LOGOUT_REDIRECT_URIS = json.loads(os.environ.get(
     "NUINFOSYTE_OIDC_POST_LOGOUT_REDIRECT_URIS", "[]"))
 OIDC_CLIENT_ID = os.environ.get(
-    "NUINFOSYTE_OIDC_CLIENT_ID", "react-boilerplate")
+    "NUINFOSYTE_OIDC_CLIENT_ID", "infosys")
 OIDC_CLIENT_SECRET = os.environ.get("NUINFOSYTE_OIDC_CLIENT_SECRET", "fakesecret")
