@@ -4,7 +4,7 @@ Provides optional API functionality for web / backend modularity
 from typing import List, Optional
 import subprocess
 from fastapi import FastAPI
-from . import betabrite
+import betabrite
 import pathlib
 """
 NuInfoSys Middleware

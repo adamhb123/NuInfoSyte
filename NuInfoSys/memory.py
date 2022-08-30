@@ -5,7 +5,7 @@ Doesn't work lol
 
 from typing import Dict, Union
 from enum import Enum
-from .betabrite.framecontrolbytes import FrameControlBytes
+from framecontrolbytes import FrameControlBytes
 
 """
 The sum of all the file sizes (except for SMALL DOTS PICTURE and LARGE DOTS PICTURE files) plus 11 bytes of overhead

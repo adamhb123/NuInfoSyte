@@ -14,7 +14,7 @@ from datetime import datetime
 from typing import Union, List, Dict
 import random
 from serial import Serial
-from .framecontrolbytes import FrameControlBytes
+from framecontrolbytes import FrameControlBytes
 
 '''
 Configurables

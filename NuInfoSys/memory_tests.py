@@ -1,4 +1,4 @@
-from .betabrite import memory
+from betabrite import memory
 
 
 def test_memory_clear():
